@@ -7,6 +7,10 @@ const app = express()
 // Init middleware
 // app.use(logger)
 
+// Body Parser middleware
+app.use(express.json())
+// handle for submission
+app.use(express.urlencoded({extended:false}))
 
 //  Set static folder
 app.use(express.static(path.join(__dirname,'public')))
