@@ -1,5 +1,6 @@
 const express = require('express')
 const path = require('path')
+const exphbs = require('express-handlebars')
 const logger = require('./Middleware/logger')
 
 const app = express()
@@ -7,9 +8,13 @@ const app = express()
 // Init middleware
 // app.use(logger)
 
+// Handlebar middleware
+app.engine('handlebars',exphbs({defaultLayout:'main'}))
+app.set('view engine','handlebars')
+
 // Body Parser middleware
 app.use(express.json())
-// handle for submission
+// handle for submission 
 app.use(express.urlencoded({extended:false}))
 
 //  Set static folder
