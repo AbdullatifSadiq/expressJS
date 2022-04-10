@@ -9,13 +9,17 @@ const app = express()
 // app.use(logger)
 
 // Handlebar middleware
-app.engine('handlebars',exphbs({defaultLayout:'main'}))
+app.engine('handlebars', exphbs.engine({defaultLayout:'main'}))
 app.set('view engine','handlebars')
+
 
 // Body Parser middleware
 app.use(express.json())
 // handle for submission 
 app.use(express.urlencoded({extended:false}))
+
+// Home page route
+app.get('/', (req,res) => res.render('index'))
 
 //  Set static folder
 app.use(express.static(path.join(__dirname,'public')))
